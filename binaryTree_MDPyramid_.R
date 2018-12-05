@@ -1,10 +1,11 @@
-
+# https://rstudio.cloud/project/152401
 rm(list = ls())
 gc()
 
-pacman::p_load(tidyverse, data.table, stringr, magrittr,glue)
+pacman::p_load(tidyverse, data.table, stringr, magrittr,glue,data.tree,treemap)
 
-dt <- readLines(con = "binaryTree_test.txt",)
+file <- "https://raw.githubusercontent.com/vinciuna/MDPyramid/master/binaryTree_test.txt"
+dt <- readLines(con = file)
 max <- dt %>% map_int(.,~str_count(.,"\\s+")) %>% max()
 dt %<>% map_chr(., ~str_c(., str_c(rep(" 0",max-str_count(.,"\\s")),collapse = ""),sep=""))
 dt <- str_split(dt,"\\s")
@@ -72,5 +73,3 @@ for (i in 2:n) {
 
 glue("path1: MAX sum={map(path,1) %>% unlist() %>% sum()} \t adds={map(path,1) %>% unlist() %>% paste0(.,collapse = '+')}
      path2: MAX sum={map(path,2) %>% unlist() %>% sum()} \t adds={map(path,2) %>% unlist() %>% paste0(.,collapse = '+')}")
-
-

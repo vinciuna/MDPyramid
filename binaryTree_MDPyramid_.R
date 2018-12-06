@@ -14,8 +14,10 @@ dt
 
 #----------------------------------------------------------------------------
 #data cleansing
-dt_clean <- function(x) {
-  x[!(seq(x)%%2 == x%%2)] <- 0
+dt_clean <- function(x,p) {
+  if (p==1){
+  x[!(seq(x)%%2 == x%%2)] <- 0} else
+  {x[(seq(x)%%2 == x%%2)] <- 0}
   x[x==0] <- -Inf
   x
 }
@@ -37,7 +39,8 @@ vsum <- function(jj){
 #----------------------------------------------------------------------------
 
 #data setup
-dt %<>%  mutate_all(~dt_clean(.))
+par <- dt[[1,1]]%%2
+dt %<>%  mutate_all(~dt_clean(.,par))
 dt
 n <- nrow(dt)
 x1 <- dt[1,] %>% as.numeric(.)
@@ -73,3 +76,20 @@ for (i in 2:n) {
 
 glue("path1: MAX sum={map(path,1) %>% unlist() %>% sum()} \t adds={map(path,1) %>% unlist() %>% paste0(.,collapse = '+')}
      path2: MAX sum={map(path,2) %>% unlist() %>% sum()} \t adds={map(path,2) %>% unlist() %>% paste0(.,collapse = '+')}")
+
+pathTree <- data.frame(path=c(map(path,1) %>% unlist()))
+pathTree$pathString <- paste("root",
+                             pathTree$path,
+                            sep = "/")
+pathTree <- as.Node(path)
+print(pathTree)
+
+
+
+print(pathTree)
+plot(pathTree)
+
+
+x <- getURL(, ssl.verifypeer = FALSE)
+
+eval(parse(text = x))

@@ -57,8 +57,10 @@ Functions:
 
 ``` r
 #data cleansing
-dt_clean <- function(x) {
-  x[!(seq(x)%%2 == x%%2)] <- 0
+dt_clean <- function(x,p) {
+  if (p==1){
+  x[!(seq(x)%%2 == x%%2)] <- 0} else
+  {x[(seq(x)%%2 == x%%2)] <- 0}
   x[x==0] <- -Inf
   x
 }
@@ -76,14 +78,14 @@ vsum <- function(jj){
          adds=adds)
   } else return(-Inf)
 }
-#
 ```
 
 Data setup: \* cleaning table with impossible
 
 ``` r
 #data setup
-dt %<>%  mutate_all(~dt_clean(.))
+par <- dt[[1,1]]%%2
+dt %<>%  mutate_all(~dt_clean(.,par))
 dt
 ```
 

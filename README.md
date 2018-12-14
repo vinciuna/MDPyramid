@@ -1,7 +1,7 @@
-## MDPyramid Doc
+# MDPyramid
 
 Simple MDPyramid script in R. 
-Delivers 2 possible routes with maximum sums.
+Delivers possible route with maximum sums.
 
 The task to find the maximum sum of the numbers per the given rules below:  
 
@@ -12,6 +12,5 @@ The task to find the maximum sum of the numbers per the given rules below:
 
 The goal is to find the maximum sum if you walk the path. 
 
-Pros:
-* This is v01- simple approach, without recursive functions. Code loops over the lines and looking for best 2 sums.  
-* As it track for maximum 2 possible routes with maximum sums, it doesn`t encouters if boths routes will drop [face not allowed jumps] due merged way.
+* This is v03
+* added test with random numbers and random matrix sizes

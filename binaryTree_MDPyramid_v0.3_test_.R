@@ -43,11 +43,11 @@ path.sum <- function(dat) {
 #----------------------------------------------------------------------------
 set.seed(123)
 #data setup
-tests <- 100
+tests <- 200
 output_file_csv <- "binominal_trees"
 write(paste0("tests=",tests,"begin",sep=" "),file = output_file_csv,append=F)
 for (t in seq(tests)) {
-  cat("##  test=",t,":\n")
+  cat("#  test=",t,":\n")
   write(paste0("test=",t,":\n",sep=" "),file = output_file_csv,append=T)
   n <- sample(1:50,1,replace = T)
   cat("  n=",n,"\n")
@@ -92,8 +92,8 @@ for (t in seq(tests)) {
         }
       }
     } else {
-      cat( "    path: ",sum_-n_,"+",n_,sep="")
-      write(paste0("    path: ",sum_-n_,"+",n_,sep=""),file = output_file_csv,append=T)
+      cat( "    path: ",sum_-n_,"+",n_,"\n",sep="")
+      write(paste0("    path: ",sum_-n_,"+",n_,"\n",sep=""),file = output_file_csv,append=T)
     }
   }
 }

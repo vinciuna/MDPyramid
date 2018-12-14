@@ -58,7 +58,7 @@ path.sum <- function(dat) {
     answer <- path.sum(dt)
   }
   if (answer==-Inf) {
-    cat("  path not exists...\n")
+    cat("  path not found...\n")
   } else {
     cat("  sum= ",path[[1]][[1]][[2]],"\n",sep="")
     sum_ <- path[[1]][[1]][2]
